@@ -1,3 +1,11 @@
+<p align="center">
+<img src="image/img1.jpg" width="150" alt="Profile Picture">
+</p>
+
+<p align="center"><strong>Nama: Naufal Hilmy Munte</strong></p>
+<p align="center"><strong>NIM: 2301093020</strong></p>
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
