@@ -11,7 +11,7 @@
                       <a class="nav-link @yield('navHome')" aria-current="page" href="{{ route('movies.index') }}">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link @yield('navWatch')" href="#">Watchlist</a>
+                      <a class="nav-link @yield('navInput')" href="{{ route('movies.create') }}">Input Movie</a>
                   </li>
               </ul>
 
