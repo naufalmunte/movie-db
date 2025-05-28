@@ -35,7 +35,7 @@ class MovieController extends Controller
             'category_id' => 'required|integer',
             'year' => 'required|integer',
             'actors' => 'nullable|string',
-            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'cover_image' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('cover_image')) {

@@ -1,23 +1,47 @@
 @extends('layouts.main')
+
 @section('title')
+@endsection
+
 @section('navHome', 'active')
 
 @section('container')
+<style>
+    .movie-img {
+        width: 250px;
+        height: 375px;
+        object-fit: cover;
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+    }
+
+    .movie-card {
+        height: 375px; /* Kartu dan gambar seragam */
+    }
+
+    .movie-body {
+        width: 100%;
+        padding: 1rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
+
 <h1>Popular Movie</h1>
 <div class="container mt-4">
     <div class="row">
         @foreach ($movies as $movie)
             <div class="col-md-6 mb-4">
-                <div class="card shadow-sm h-100 d-flex flex-row">
-                    @if (filter_var($movie->cover_image, FILTER_VALIDATE_URL))
-                        <img src="{{ $movie->cover_image }}" alt="{{ $movie->title }}" style="width: 250px; height: auto;">
-                    @else
-                        <img src="{{ asset('storage/' . $movie->cover_image) }}" alt="{{ $movie->title }}" style="width: 250px; height: auto;">
-                    @endif
-                    <div class="card-body d-flex flex-column justify-content-between" style="width: 60%;">
+                <div class="card shadow-sm h-100 d-flex flex-row movie-card">
+                    <img src="{{ filter_var($movie->cover_image, FILTER_VALIDATE_URL) ? $movie->cover_image : asset('storage/' . $movie->cover_image) }}"
+                         alt="{{ $movie->title }}"
+                         class="movie-img">
+                    <div class="movie-body">
                         <h5 class="card-title">{{ $movie->title }}</h5>
                         <p class="card-text">{{ Str::limit($movie->synopsis, 100, '...') }}</p>
-                        <p class="card-text"> Year :{{ $movie->year }}</p>
+                        <p class="card-text">Year: {{ $movie->year }}</p>
                         <a href="/movie/{{ $movie->id }}/{{ $movie->slug }}" class="btn btn-success align-self-start">Lihat Selanjutnya</a>
                     </div>
                 </div>

@@ -4,6 +4,15 @@
 
 @section('container')
 <h1>Add New Movie</h1>
+ @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+ </div>
+@endif
 <div class="container mt-4 mb-5"> <!-- Menambahkan margin bottom -->
     <div class="card">
         <div class="card-body">
@@ -63,6 +72,22 @@
                     <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
                 </div>
             </form>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const titleInput = document.getElementById("title");
+                const slugInput = document.getElementById("slug");
+
+                titleInput.addEventListener("input", function () {
+                    let slug = titleInput.value.toLowerCase()
+                        .trim()
+                        .replace(/[^a-z0-9\s-]/g, '')     // Hapus karakter non-alfanumerik kecuali spasi dan -
+                        .replace(/\s+/g, '-')              // Ganti spasi dengan -
+                        .replace(/-+/g, '-');              // Ganti -- dengan -
+                    slugInput.value = slug;
+                });
+            });
+        </script>
+
         </div>
     </div>
 </div>
