@@ -37,12 +37,12 @@
                 <div class="card shadow-sm h-100 d-flex flex-row movie-card">
                     <img src="{{ filter_var($movie->cover_image, FILTER_VALIDATE_URL) ? $movie->cover_image : asset('storage/' . $movie->cover_image) }}"
                          alt="{{ $movie->title }}"
-                         class="movie-img">
+                         class="movie-img" >
                     <div class="movie-body">
                         <h5 class="card-title">{{ $movie->title }}</h5>
                         <p class="card-text">{{ Str::limit($movie->synopsis, 100, '...') }}</p>
                         <p class="card-text">Year: {{ $movie->year }}</p>
-                        <a href="/movie/{{ $movie->id }}/{{ $movie->slug }}" class="btn btn-success align-self-start">Lihat Selanjutnya</a>
+                        <a href="/movie/{{ $movie->id }}/{{ $movie->slug }}" class="btn btn-success align-self-start">Detail</a>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,26 @@
                       <a class="nav-link @yield('navInput')" href="{{ route('movies.create') }}">Input Movie</a>
                   </li>
                   @endauth
+                  @auth
+                  <li class="nav-item">
+                      <a class="nav-link @yield('navAdmin')" href="{{ route('admin.movies.list') }}">Data Movie</a>
+                  </li>
+                  @endauth
+
+                   <!-- Tombol Login / Logout -->
+                    @auth
+                    <div class="d-flex align-items-center text-white me-2">
+                        Hello, {{ explode(' ', auth()->user()->name)[0] ?? auth()->user()->email }}
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                    </form>
+                    @endauth
+                    @guest
+                    <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
+                    @endguest
+
               </ul>
 
              <!-- Search Bar -->
@@ -23,22 +43,7 @@
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
 
-            <!-- Tombol Login / Logout -->
-            @auth
-            <div class="d-flex align-items-center text-white me-2">
-                Hello, {{ explode(' ', auth()->user()->name)[0] ?? auth()->user()->email }}
-            </div>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-outline-light">Logout</button>
-            </form>
-            @endauth
-
-
-                @guest
-                <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
-                @endguest
-
+           
           </div>
       </div>
   </nav>
