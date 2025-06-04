@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\RoleAdmin;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -18,6 +19,8 @@ Route::resource('movies', MovieController::class);
 
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create')->middleware('auth');
 Route::post('/movies/store', [MovieController::class, 'store'])->name('movies.store')->middleware('auth');
+Route::get('/movies/{id}/edit', [MovieController::class, 'edit'])->name('movies.edit')->middleware('auth', RoleAdmin::class);
+Route::delete('/admin/movies/{id}', [MovieController::class, 'destroy'])->name('admin.movies.destroy');
 
 Route::get('login', [AuthController::class, 'Formlogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -25,6 +28,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/admin/movies', [MovieController::class, 'showMovies'])->name('admin.movies.list');
+Route::get('/admin/movies', [MovieController::class, 'showMovies'])->name('admin.movies.list')->middleware('auth');
 
 
